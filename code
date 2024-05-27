@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #todoList {
+      margin-top: 20px;
+    }
+    .todoItem {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <input type="text" id="todoInput" placeholder="Enter a new to-do item">
+  <button onclick="addTodo()">Add</button>
+  <div id="todoList"></div>
+
+  <script>
+    function addTodo() {
+      const todoInput = document.getElementById('todoInput');
+      const todoText = todoInput.value;
+      if (todoText === '') return;
+
+      const todoList = document.getElementById('todoList');
+      const todoItem = document.createElement('div');
+      todoItem.className = 'todoItem';
+      todoItem.innerHTML = `
+        <span>${todoText}</span>
+        <button onclick="removeTodoItem(this)">Remove</button>
+      `;
+
+      todoList.appendChild(todoItem);
+      todoInput.value = '';
+    }
+
+    function removeTodoItem(button) {
+      const todoItem = button.parentElement;
+      todoItem.remove();
+    }
+  </script>
+</body>
+</html>
